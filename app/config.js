@@ -118,7 +118,7 @@ module.exports = {
 	headerDropdownLinks: {
 		title:"Related Sites",
 		links:[
-			{name: "Bitcoin Explorer", url:"https://btc.chaintools.io", imgUrl:"/img/logo/btc.svg"},
+			{name: "Bitcoin Explorer", url:"https://btc.chaintools.io", imgUrl:"https://pixeldra.in/api/getfile/tUWQaI"},
 			{name: "Litecoin Explorer", url:"https://ltc.chaintools.io", imgUrl:"/img/logo/ltc.svg"},
 			{name: "Lightning Explorer", url:"https://lightning.chaintools.io", imgUrl:"/img/logo/lightning.svg"},
 		]

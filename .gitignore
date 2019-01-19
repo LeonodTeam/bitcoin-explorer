@@ -57,5 +57,11 @@ typings/
 # dotenv environment variables file
 .env
 
+# credentials file
+*app/credentials.js*
+
+# start script
+*start.sh*
+
 
 public/css/radial-progress.css

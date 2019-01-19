@@ -3,6 +3,8 @@ html(lang="en")
 	head
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no")
+		meta(name="description", content="A Bitcoin blockchain explorer, hosted by Leonod. Leonod is a french company promoting decentralization.")
+		title Bitcoin explorer - Leonod
 		
 		if (session.uiTheme && session.uiTheme == "dark")
 			link(rel="stylesheet", href="/css/bootstrap-dark.css")
@@ -15,10 +17,9 @@ html(lang="en")
 		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Ubuntu:400,700")
 		link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css")
 		link(rel="stylesheet", href="/css/radial-progress.css", type="text/css")
-		link(rel='stylesheet', href='/css/styling.css')
-
-		link(rel="icon", type="image/png", href=("/img/logo/" + config.coin.toLowerCase() + ".png"))
-
+		link(rel="stylesheet", href="/css/styling.css")
+		link(rel="icon", type="image/png", href="/img/logo/btc.png")
+			
 		block headContent
 			title Explorer
 		
@@ -27,9 +28,7 @@ html(lang="en")
 			div(class="container")
 				a(class="navbar-brand", href="/")
 					span
-						if (coinConfig.logoUrl)
-							img(src=coinConfig.logoUrl, class="header-image", alt="logo")
-						span #{coinConfig.siteTitle}
+						img(src="https://pixeldra.in/api/getfile/tUWQaI", class="header-image", alt="logo")
 						
 				button(type="button", class="navbar-toggler navbar-toggler-right", data-toggle="collapse", data-target="#navbarNav", aria-label="collapse navigation")
 					span(class="navbar-toggler-icon")
@@ -50,17 +49,6 @@ html(lang="en")
 											a(class="dropdown-item", href=item.url)
 												i(class=item.fontawesome, style="width: 20px; margin-right: 10px;")
 												span  #{item.name}
-
-							if (config.headerDropdownLinks)
-								li(class="nav-item dropdown")
-									a(class="nav-link dropdown-toggle", href="javascript:void(0)", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
-										span  #{config.headerDropdownLinks.title}
-									div(class="dropdown-menu", aria-label=(config.headerDropdownLinks.title + " Items"))
-										each item in config.headerDropdownLinks.links
-											a(class="dropdown-item", href=item.url)
-												img(src=item.imgUrl, style="width: 24px; height: 24px; margin-right: 8px;", alt=item.name)
-												span  #{item.name}
-
 							li(class="nav-item dropdown")
 								a(class="nav-link dropdown-toggle", href="javascript:void(0)", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
 									i(class="fas fa-cog")
@@ -115,50 +103,35 @@ html(lang="en")
 			footer(class="footer bg-dark text-light pt-3 pb-1 px-3", style="margin-top: 50px;")
 				div(class="container")
 					div(class="row")
-						div(class="col-md-5")
+						div(class="col-md-3")
+							dl
+								dt About Leonod
+								dd
+									dt 
+										dd
+											a(href="https://leonod.com/", class="mr-2", title="Leonod website") Our website
+									dt 
+										dd
+											a(href="https://twitter.com/LeonodTeam", class="mr-2", title="Leonod's twitter") Our Twitter
+
+						div(class="col-md-3")
+							dl
+								dt Our explorers
+								dd 
+									dt 
+										dd
+											a(href="http://stellar.leonod.com") Stellar
+									dt 
+										dd
+											a(href="http://lightning.leonod.com") Lightning Network
+
+
+						div(class="col-md-3")
 							dl
 								dt Source
 								dd
 									a(href="https://github.com/janoside/btc-rpc-explorer") github.com/janoside/btc-rpc-explorer
-
-								dt Running Version
-								dd
-									a(href=("https://github.com/janoside/btc-rpc-explorer/commit/" + sourcecodeVersion)) #{sourcecodeVersion}
-									span(style="color: #ccc;")  (#{sourcecodeDate})
-
-								if (config.demoSite)
-									dt Public Demos
-									dd
-										if (coinConfig.demoSiteUrl)
-											a(href=coinConfig.demoSiteUrl) #{coinConfig.demoSiteUrl}
-										else
-											a(href="https://btc-explorer.chaintools.io") https://btc-explorer.chaintools.io
-										
-										div(class="mt-2")
-											- var demoSiteCoins = ["BTC", "LTC"];
-											each demoSiteCoin in demoSiteCoins
-												a(href=coinConfigs[demoSiteCoin].demoSiteUrl, class="mr-2", title=coinConfigs[demoSiteCoin].siteTitle)
-													img(src=("/img/logo/" + demoSiteCoin.toLowerCase() + ".svg"), alt=demoSiteCoin.toLowerCase())
-
-											a(href="https://lightning.chaintools.io", class="mr-2", title="Lightning Explorer")
-												img(src=("/img/logo/lightning.svg"), style="width: 32px; height: 32px;", alt="lightning")
-
-						div(class="col-md-7 text-md-right")
-							dl
-								dt Support Development of #{coinConfig.siteTitle}
-								dd
-									div(class="text-md-right text-center")
-										each coin, index in config.donationAddresses.coins
-											div(style="display: inline-block; max-width: 150px;", class="text-center mb-3 word-wrap monospace", class=(index > 0 ? "ml-md-3" : false))
-												img(src=donationAddressQrCodeUrls[coin], alt=config.donationAddresses[coin].address, style="border: solid 1px #ccc;")
-												br
-												if (coinConfig.ticker == coin)
-													span #{coin}: 
-													a(href=("/address/" + config.donationAddresses[coin].address)) #{config.donationAddresses[coin].address}
-												else
-													span #{coin}: 
-													a(href=(config.donationAddresses.sites[coin] + "/address/" + config.donationAddresses[coin].address)) #{config.donationAddresses[coin].address}
-		
+													
 		script(src="https://code.jquery.com/jquery-3.3.1.min.js", integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", crossorigin="anonymous")
 		script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js", integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ", crossorigin="anonymous")
 		script(src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js", integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb", crossorigin="anonymous")
